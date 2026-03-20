@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento Wise Imob: Dominando o Sistema</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. CONFIGURAÇÕES GERAIS E PALETA WISE IMOB */
+        :root {
+            --wise-green: #22c55e; /* Verde principal do menu Pós-vendas/Botões */
+            --wise-green-light: #dcfce7;
+            --wise-orange: #f59e0b; /* Laranja do menu Oportunidades */
+            --wise-orange-light: #fef3c7;
+            --wise-bg-gray: #f4f6f8; /* Fundo geral da tela */
+            --wise-white: #ffffff; /* Fundo dos cartões */
+            --text-main: #334155; /* Texto escuro */
+            --text-light: #64748b; /* Texto secundário */
+            --border-color: #e2e8f0;
+            --alert-red: #ef4444;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body {
+            background-color: #cbd5e1; /* Fundo externo da apresentação */
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            padding: 40px 0;
+            place-items: center;
+            font-family: 'Urbanist', sans-serif;
+            color: var(--text-main);
+        }
+
+        /* 2. CONTAINERS DOS SLIDES */
+        .slide-container {
+            align-items: center;
+            background-color: var(--wise-white);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 720px; /* Proporção 16:9 HD aprox */
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 50px 60px;
+            width: 1280px;
+            position: relative;
+        }
+
+        /* Cabeçalho padrão dos slides */
+        .slide-header {
+            width: 100%;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slide-header i {
+            font-size: 32px;
+            color: var(--wise-green);
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0;
+            color: #0f172a;
+        }
+
+        .slide-title span.green { color: var(--wise-green); }
+        .slide-title span.orange { color: var(--wise-orange); }
+
+        /* 3. TIPOGRAFIA E TEXTOS "MASTIGADOS" */
+        h1 { font-size: 60px; line-height: 1.2; margin-bottom: 15px; color: #0f172a;}
+        h3 { font-size: 24px; font-weight: 700; margin: 0 0 10px 0; color: #0f172a; }
+        p { margin: 0 0 15px 0; font-size: 20px; line-height: 1.5; color: var(--text-main); }
+        
+        .destaque {
+            background-color: var(--wise-green-light);
+            color: #166534;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .destaque-orange {
+            background-color: var(--wise-orange-light);
+            color: #b45309;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* Caixa de Dica/Instrução */
+        .instrucao-box {
+            background-color: #f8fafc;
+            border-left: 5px solid var(--wise-green);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+        .instrucao-box.orange { border-left-color: var(--wise-orange); }
+        .instrucao-box.red { border-left-color: var(--alert-red); }
+        .instrucao-box h4 { margin: 0 0 10px 0; font-size: 18px; color: #0f172a; text-transform: uppercase; letter-spacing: 1px;}
+        .instrucao-box ul { margin: 0; padding-left: 20px; }
+        .instrucao-box li { font-size: 18px; margin-bottom: 8px; }
+
+        /* 4. LAYOUTS */
+        .content-area {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            gap: 40px;
+        }
+
+        .col-text { flex: 1; display: flex; flex-direction: column; justify-content: center;}
+        .col-img { flex: 1.5; display: flex; align-items: center; justify-content: center; background-color: var(--wise-bg-gray); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; padding: 10px;}
+        
+        .col-img-stack {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--wise-bg-gray); 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color); 
+            padding: 15px;
+        }
+
+        /* Estilo para os prints do sistema */
+        .col-img img, .col-img-stack img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Capa */
+        .capa-layout {
+            text-align: center;
+            justify-content: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo-placeholder {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--wise-green);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-placeholder i { color: var(--wise-green); }
+
+        /* Grid de Ícones (Para a rotina) */
+        .grid-rotina {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+        }
+        .rotina-card {
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .rotina-card i { font-size: 40px; margin-bottom: 20px; color: var(--wise-green); }
+        .rotina-card.orange i { color: var(--wise-orange); }
+        .rotina-card.red i { color: var(--alert-red); }
+
+        /* Mini-imagem na caixa de texto (Para botões) */
+        .btn-img { height: 35px; vertical-align: middle; border-radius: 4px; border: 1px solid #ccc; margin: 0 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Capa -->
+<div class="slide-container">
+    <div class="capa-layout">
+        <div class="logo-placeholder">
+            <i class="fa-solid fa-building-circle-check"></i> wise imob
+        </div>
+        <h1>Treinamento Prático: <br>Dominando o <span style="color: var(--wise-green);">Sistema</span></h1>
+        <p style="font-size: 24px; color: var(--text-light); max-width: 800px; margin-top: 20px;">
+            Aprenda passo a passo como utilizar o CRM para organizar seus clientes, 
+            acompanhar comissões e garantir que nenhuma venda fique para trás.
+        </p>
+    </div>
+</div>
+
+<!-- Slide 2: Dashboard -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-chart-pie"></i>
+        <h2 class="slide-title">Visão Geral: <span class="green">O seu Dashboard</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-text">
+            <h3>O Painel de Controle Principal</h3>
+            <p>Esta é a sua tela inicial. Aqui você tem o resumo instantâneo de toda a sua saúde comercial e financeira.</p>
+            
+            <div class="instrucao-box">
+                <h4><i class="fa-solid fa-hand-pointer"></i> Onde olhar primeiro:</h4>
+                <ul>
+                    <li><strong>Pós-vendas atrasadas (Vermelho):</strong> Indicador crítico. Se há números aqui, são processos financeiros travados. Clique para agir!</li>
+                    <li><strong>VGV Total (Verde):</strong> É o Valor Geral de Vendas movimentado no período.</li>
+                    <li><strong>Oportunidades (Laranja):</strong> Dinheiro que está na mesa, aguardando fechamento.</li>
+                </ul>
+            </div>
+            <p>💡 <em>Dica: Utilize os filtros (7d, 30d, 6m) para analisar diferentes períodos e ajustar a estratégia.</em></p>
+        </div>
+        <div class="col-img">
+            <img src="WhatsApp Image 2026-03-18 at 16.46.49.jpeg" alt="Tela do Dashboard mostrando VGV e pós-vendas">
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Gestão de Oportunidades -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-filter" style="color: var(--wise-orange);"></i>
+        <h2 class="slide-title">Funil de Vendas: <span class="orange">Gestão de Oportunidades</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-img" style="flex: 1.2;">
+            <img src="WhatsApp Image 2026-03-20 at 10.50.04.jpeg" alt="Tela de Gestão de Oportunidades vazia">
+        </div>
+        <div class="col-text" style="flex: 0.8; padding-left: 20px;">
+            <h3>Organize o seu pipeline</h3>
+            <p>O menu <span class="destaque-orange">Oportunidades</span> é onde você acompanha todos os clientes que ainda estão em fase de negociação.</p>
+            
+            <div class="instrucao-box orange">
+                <h4><i class="fa-solid fa-eye"></i> Como visualizar:</h4>
+                <ul>
+                    <li>Use a barra de pesquisa superior para encontrar um cliente ou imóvel rapidamente.</li>
+                    <li>Filtre por <strong>Status</strong> ou <strong>Processo</strong> para saber exatamente quem precisa de contato hoje.</li>
+                    <li>O objetivo diário do corretor é nunca ter esta tela "abandonada".</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Criando Oportunidades -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-lightbulb" style="color: var(--wise-orange);"></i>
+        <h2 class="slide-title">Adicionar Negócio: <span class="orange">Registro do Lead</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-text">
+            <h3>Como registrar um novo interessado?</h3>
+            <p>Nunca confie na memória. O cliente entrou em contato? Registre-o imediatamente clicando no botão amarelo <strong>"+ Oportunidade"</strong>.</p>
+            
+            <div class="instrucao-box orange">
+                <h4><i class="fa-solid fa-list-check"></i> Passo a Passo:</h4>
+                <ul>
+                    <li><strong>Modos de Registro:</strong> Alterne entre o modo <em>Simples</em> e o <em>Completo</em> através do botão do topo <img src="WhatsApp Image 2026-03-20 at 10.53.44.jpeg" class="btn-img" alt="Botão Simples Laranja">.</li>
+                    <li><strong>Garantir a Comissão:</strong> É crucial preencher os campos <em>Corretor</em> e <em>Gestor</em> com a respectiva porcentagem de participação (ex: 100%).</li>
+                    <li>No modo Completo, adicione logo os dados bancários e anexos do cliente para poupar tempo.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-img">
+            <img src="WhatsApp Image 2026-03-20 at 10.52.29.jpeg" alt="Tela Nova Oportunidade detalhada com dados">
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Gestão de Pós-Venda -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-handshake-angle"></i>
+        <h2 class="slide-title">Pós-Venda: <span class="green">Garantir o Recebimento</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-img-stack" style="flex: 1.2;">
+            <img src="WhatsApp Image 2026-03-20 at 10.58.23.jpeg" alt="Registro de Nova Pós Venda" style="max-height: 250px;">
+            <img src="WhatsApp Image 2026-03-20 at 10.57.18.jpeg" alt="Lista de Pós-Vendas em andamento" style="max-height: 250px;">
+        </div>
+        <div class="col-text" style="flex: 0.8; padding-left: 20px;">
+            <h3>O cliente assinou. E agora?</h3>
+            <p>A venda só termina quando o dinheiro cai na conta. No menu lateral <span class="destaque">Pós-vendas</span>, você acompanha o status burocrático.</p>
+            
+            <div class="instrucao-box">
+                <h4><i class="fa-solid fa-file-contract"></i> Como acompanhar:</h4>
+                <ul>
+                    <li>Ao criar o processo, note que o botão fica verde <img src="WhatsApp Image 2026-03-20 at 10.58.48.jpeg" class="btn-img" alt="Botão Simples Verde">. Preencha todos os dados de financiamento.</li>
+                    <li>Foque na coluna <strong>Etapa</strong> (Ex: "Complemento do Sinal").</li>
+                    <li>Verifique sempre a <strong>Prev. Conclusão</strong> para desenhar o fluxo de caixa.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Comissões -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-dollar-sign"></i>
+        <h2 class="slide-title">Minhas Comissões: <span class="green">Transparência Total</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-text">
+            <h3>Acompanhe seus ganhos em tempo real</h3>
+            <p>Chega de dúvidas sobre os valores a receber. O Wise Imob traz a sua faturação perfeitamente "mastigada".</p>
+            
+            <div class="instrucao-box">
+                <h4><i class="fa-solid fa-sack-dollar"></i> O que encontra aqui:</h4>
+                <ul>
+                    <li>Acesse o menu lateral <span class="destaque">Comissões</span>.</li>
+                    <li>Você pode alternar a visualização entre <strong>Lista</strong> (detalhe por venda) ou <strong>Resumo</strong>.</li>
+                    <li>No canto direito, o sistema apresenta o <strong>Total das Comissões</strong> garantidas para o seu perfil.</li>
+                </ul>
+            </div>
+            <p>💡 <em>Alerta: Se a venda estiver "trancada" no Pós-venda, a sua comissão não avança. Mantenha a documentação em dia!</em></p>
+        </div>
+        <div class="col-img">
+            <img src="WhatsApp Image 2026-03-20 at 11.00.35.jpeg" alt="Tela de Comissões Vazia">
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Comunicação (Chats) -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-regular fa-comments"></i>
+        <h2 class="slide-title">Chats: <span class="green">Histórico Centralizado</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-img-stack" style="flex: 1.2;">
+            <img src="WhatsApp Image 2026-03-20 at 10.59.30.jpeg" alt="Tela inicial de Chats aguardando seleção" style="max-height: 250px;">
+            <img src="WhatsApp Image 2026-03-20 at 10.59.42.jpeg" alt="Tela de Chats com conversa em andamento" style="max-height: 250px;">
+        </div>
+        <div class="col-text" style="flex: 0.8; padding-left: 20px;">
+            <h3>Fale sobre a venda, DENTRO da venda.</h3>
+            <p>Se você resolve pendências pelo celular pessoal, informações críticas vão se perder.</p>
+            
+            <div class="instrucao-box">
+                <h4><i class="fa-solid fa-mobile-screen"></i> Como utilizar:</h4>
+                <ul>
+                    <li>Acesse <span class="destaque">Chats</span>. Você verá a lista de negócios do lado esquerdo.</li>
+                    <li>Selecione o negócio desejado (Ex: "BS Safira - 901") para abrir a conversa.</li>
+                    <li><strong>Vantagem de Ouro:</strong> Todo o histórico com o backoffice e anexos ficam salvos na nuvem, ligados àquele negócio.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Tarefas e Alocações -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <h2 class="slide-title">Gestão Diária: <span class="green">Tarefas e Leads</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-text">
+            <h3>A regra de ouro da Imobiliária</h3>
+            <p>A velocidade de resposta dita quem ganha a venda. O sistema audita ativamente a distribuição de trabalho.</p>
+            
+            <div class="grid-rotina" style="grid-template-columns: 1fr; gap: 20px;">
+                <div class="rotina-card" style="padding: 20px;">
+                    <h4 style="color: var(--wise-green); margin-top: 0;"><i class="fa-solid fa-user-check" style="font-size: 20px; margin-bottom:0;"></i> Pendentes de Alocação</h4>
+                    <p style="font-size: 16px;">A tela "Tudo alocado!" é a meta. Significa que nenhum lead ficou abandonado esperando que um corretor assumisse o atendimento.</p>
+                </div>
+                <div class="rotina-card orange" style="padding: 20px;">
+                    <h4 style="color: var(--wise-orange); margin-top: 0;"><i class="fa-solid fa-list-ul" style="font-size: 20px; margin-bottom:0;"></i> As Suas Tarefas</h4>
+                    <p style="font-size: 16px;">Verifique as tarefas. "Nenhuma tarefa urgente" significa que os follow-ups com os seus clientes estão todos em dia.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-img-stack" style="background: transparent; border: none; box-shadow: none;">
+            <img src="WhatsApp Image 2026-03-18 at 16.51.31.jpeg" alt="Modal de Pendentes de Alocação Tudo Alocado" style="max-height: 250px;">
+            <img src="WhatsApp Image 2026-03-18 at 16.52.09.jpeg" alt="Tela de Tarefas sem tarefas urgentes" style="max-height: 180px;">
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Perfil e Notificações -->
+<div class="slide-container">
+    <div class="slide-header">
+        <i class="fa-solid fa-user-gear"></i>
+        <h2 class="slide-title">Perfil: <span class="green">Notificações e Integrações</span></h2>
+    </div>
+    <div class="content-area">
+        <div class="col-img-stack" style="flex: 1.1; background: transparent; border: none; box-shadow: none;">
+            <div style="display: flex; gap: 15px; width: 100%; justify-content: center; align-items: flex-start;">
+                <img src="WhatsApp Image 2026-03-18 at 16.48.39.jpeg" alt="Centro de Notificações" style="max-height: 250px; width: 45%;">
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 45%;">
+                    <img src="WhatsApp Image 2026-03-18 at 16.49.22.jpeg" alt="Menu Dropdown de Perfil" style="max-height: 120px;">
+                    <img src="WhatsApp Image 2026-03-18 at 16.50.26.jpeg" alt="Tela de Perfil com integração Google" style="max-height: 200px; object-fit: cover; object-position: right;">
+                </div>
+            </div>
+        </div>
+        <div class="col-text" style="flex: 0.9; padding-left: 20px;">
+            <h3>Configure a sua central de alertas</h3>
+            <p>Deixe que o sistema trabalhe para você, avisando o que realmente importa.</p>
+            
+            <div class="instrucao-box">
+                <h4><i class="fa-solid fa-bell"></i> Onde deve clicar:</h4>
+                <ul>
+                    <li><strong>Google Agenda:</strong> Clique no seu nome (canto superior direito) > Perfil > Conectar. As visitas vão tocar no alarme do seu celular.</li>
+                    <li><strong>Sininho (Topo):</strong> Limpe as suas notificações diariamente. Descubra aqui se um colega alterou a etapa do seu imóvel ou enviou um comentário.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
