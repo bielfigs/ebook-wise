@@ -158,16 +158,22 @@
             flex-direction: column;
             align-items: center;
         }
+         /* Classe para a logo em PNG */
         .logo-placeholder {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--wise-green);
             margin-bottom: 40px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            height: 120px; /* Define a altura do espaço da logo */
+            width: 100%;
         }
-        .logo-placeholder i { color: var(--wise-green); }
+        .logo-img {
+            max-height: 100%;
+            max-width: 500px; /* Evita que logos horizontais fiquem gigantes */
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Garante que a proporção original seja mantida */
+        }
 
         /* Grid de Ícones (Para a rotina) */
         .grid-rotina {
